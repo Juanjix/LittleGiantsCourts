@@ -4,12 +4,12 @@
 <style>
 
   img{
-    position: absolute;
-    height: 100vh;
+    height: 90vh;
     width: 100%;
     margin: 0 auto;
+    position: absolute;
   }
-
+ 
 
   .content{
     position: relative;
@@ -18,21 +18,30 @@
     padding-top: 50px;
     color: white;
 
-
     h1{
       font-size: 40px;
     }
+  }
 
-   
+  /* BREAKPOINT para pantallas chicas */
+  @media (max-width: 768px) {
+    img {
+      height: 20vh; /* Más chiquita la imagen */
+      top: 30%;     /* Baja menos */
+      width: 100%;   /* No ocupe todo */
+    }
+
+    .content h1 {
+      font-size: 28px; /* Más chico el título */
+    }
   }
 </style>
-<section class="relative w-screen h-screen overflow-hidden">
+<section class="relative w-screen h-screen overflow-hidden bg-black">
   <!-- Imagen de fondo -->
   <img
     src="/images/logo-black-lgc.png"
     alt="Fondo cancha"
-    width="100%"
-    class="w-full h-full object-cover object-center md:object-top"
+    width="20%"
   />
 
 
