@@ -1,6 +1,6 @@
 ---
 // Props opcionales para personalizar
-const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitulo = "Portátil y segura. Creada para divertirse", imagen = '', buttonText = 'WhatsApp', buttonText2 = 'Contacto', whatsapp = '' } = Astro.props;
+const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitulo = "Portátil, segura y creada para divertirse en familia", imagen = '', buttonText = 'WhatsApp', buttonText2 = 'Contacto', whatsapp = '' } = Astro.props;
 ---
 
 <style>
@@ -18,7 +18,7 @@ const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitul
 </style>
 
 <section class=`bg-secondary  relative w-screen h-screen overflow-hidden bg-[url(images/lgc-background.webp)] bg-cover bg-center` >
-
+  
   <!-- Capa oscura encima para mejorar la lectura -->
   <div class="absolute inset-0 bg-black/50"></div>
 
@@ -26,7 +26,7 @@ const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitul
   <div class="relative z-10 flex flex-col justify-center h-full max-w-7xl px-8 mx-auto text-white contenido">
     <div class="max-w-lg">
       <h1 class="text-4xl md:text-6xl font-bold mb-4">{titulo}</h1>
-      <p class="text-lg md:text-2xl mb-8">{subtitulo}</p>
+      <p class="text-lg md:text-1xl mb-8">{subtitulo}</p>
       <div class="flex gap-4">
         <a 
           href=`https://wa.me/${whatsapp}` 
