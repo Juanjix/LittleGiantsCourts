@@ -9,7 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.7.4"
+    "astro": "^5.7.4",
+    "embla-carousel": "^8.6.0"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",

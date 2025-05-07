@@ -1,0 +1,119 @@
+---
+const {
+  titulo = "Testimonios",
+
+  testimonios = [
+    { nombre: "Juan Pérez", texto: "Increíble servicio y atención personalizada." },
+    { nombre: "María García", texto: "Me ayudaron a llevar mi música al siguiente nivel." },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
+    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" }
+  ]
+} = Astro.props;
+---
+
+<style>
+  .embla__viewport {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .embla__slide {
+    flex: 0 0 100%;
+    width: 320px;
+    height: 250px;
+  }
+
+  @media (min-width: 768px) {
+    .embla__slide {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .embla__slide {
+      flex: 0 0 33.3333%;
+    }
+  }
+
+  .embla__button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+  
+  }
+
+  .embla__controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;    
+  }
+</style>
+
+<section class="bg-primary text-white py-20 px-4 h-[600px]">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-8">{titulo}</h2>
+
+
+    <div class="embla">
+      <div class="embla__viewport" id="embla-viewport">
+        <div class="embla__container">
+          {testimonios.map((t: { texto: unknown; nombre: unknown; }) => (
+            <div class="embla__slide bg-secondary py-16 px-16 rounded-lg shadow-md">
+              <p class="text-2xl italic mb-4">"{t.texto}"</p>
+              <h3 class="font-bold">{t.nombre}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="embla__controls">
+        <button class="embla__button" id="prevBtn">‹</button>
+        <button class="embla__button" id="nextBtn">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  import EmblaCarousel from 'embla-carousel';
+
+  const viewport = document.querySelector('#embla-viewport');
+  const prevBtn = document.querySelector('#prevBtn');
+  const nextBtn = document.querySelector('#nextBtn');
+
+  if (viewport) {
+    const embla = EmblaCarousel(viewport, {
+      loop: true,
+      align: 'start',
+    });
+
+    prevBtn.addEventListener('click', () => embla.scrollPrev());
+    nextBtn.addEventListener('click', () => embla.scrollNext());
+
+    // Auto-play: cada 4 segundos
+    let autoPlayInterval = setInterval(() => {
+      if (embla) embla.scrollNext();
+    }, 4000);
+
+    // Pausar autoplay si el usuario interactúa
+    viewport.addEventListener('pointerenter', () => clearInterval(autoPlayInterval));
+    viewport.addEventListener('pointerleave', () => {
+      autoPlayInterval = setInterval(() => embla.scrollNext(), 4000);
+    });
+  }
+</script>
