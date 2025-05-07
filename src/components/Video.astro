@@ -1,0 +1,21 @@
+---
+// Props opcionales para personalizar
+const { titulo = "Mira como se arma", subtitulo = "En menos de 24hs podes tener tu espacio de juego listo para usar", videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ" } = Astro.props;
+---
+
+<section class="bg-white text-primary py-20 px-4 h-[900px]">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">{titulo}</h2>
+    <p class="text-lg md:text-xl mb-10">{subtitulo}</p>
+
+    <div class="aspect-w-16 aspect-h-9 w-full h-[500px] rounded-lg overflow-hidden shadow-lg">
+      <iframe 
+        class="w-full h-full"
+        src={videoUrl}
+        title="Video de presentación"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
