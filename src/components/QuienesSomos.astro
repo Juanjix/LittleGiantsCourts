@@ -1,6 +1,7 @@
 ---
 // Puedes recibir props si quieres que sea dinámico
 const titulo = "Quiénes Somos";
+const subtitulo = "Creciendo juntos dentro y fuera de la cancha"
 const texto1 = "Creamos espacios de juego y deporte donde antes no los había.Somos un equipo que cree que el deporte es una herramienta poderosa para transformar barrios, vínculos y personas. Diseñamos canchas modulares, prácticas y accesibles para que más chicos, chicas y familias puedan jugar, entrenar y compartir.Con un sistema simple y rápido, te ayudamos a instalar una cancha donde la necesites. Así de fácil. Así de gigante.";
 const texto2 = "Nuestro equipo está formado por entrenadores, profesores y coordinadores que viven el deporte todos los días. Conocemos lo que pasa en una escuelita, en un club de barrio, en un polideportivo. Y por eso diseñamos este sistema: para que tengas todo lo necesario para armar tu espacio sin complicaciones. Estamos para ayudarte en cada paso. Desde la planificación hasta el primer partido.";
 import imagen1 from "../assets/quienes-somos-1.png";
@@ -10,12 +11,14 @@ import imagen2 from "../assets/quienes-somos-2.png";
 <section class="w-full bg-primary px-6 py-16">
   <div class="max-w-6xl mx-auto text-center mb-16">
     <h2 class="text-4xl font-bold text-white">{titulo}</h2>
+    <p class="text-white text-xl mt-2">{subtitulo}</p>
   </div>
 
   <!-- Primera fila -->
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-20 mt-20">
     <div>
       <p class="text-white text-xl leading-relaxed">{texto1}</p>
+      
     </div>
     <div>
       <img src={imagen1.src} alt="Little Giants Courts" width="504" height="755" class="rounded-[50%]"/>
