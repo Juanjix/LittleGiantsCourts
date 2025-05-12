@@ -1,11 +1,17 @@
 ---
+import whatsapp from '../assets/logo-blanco-lgc.png'
+import truck from '../assets/logo-blanco-lgc.png'
+import firma from '../assets/logo-blanco-lgc.png'
+import pelota from '../assets/logo-blanco-lgc.png'
+import logo from '../assets/logo-blanco-lgc.png'
+
 const items = [
-  { id: 1, icon: '/public/wp-icon-lgc.svg', title: 'Contactate' , text: "En poco tiempo estas disfrutando de tu cancha"},
-  { id: 2, icon: '/public/lgc-icon-2.svg', title: 'Coordinamos' , text: "Aca va un pequeño texto"},
-  { id: 3, icon: '/public/lgc-icon.svg', title: 'Acuerdo Firmado' , text: "Aca va un pequeño texto"},
-  { id: 4, icon: '/public/lgc-icon-3.svg', title: 'Armado de cancha' , text: "Aca va un pequeño texto"},
-  { id: 5, icon: '/public/wp-icon-lgc.svg', title: 'Listo para jugar!', text: "Aca va un pequeño texto"},
-  { id: 6, icon: '/public/icon-lgc-4.svg', title: 'Compartí la experiencia', text: "Aca va un pequeño texto"}
+  { id: 1, icon: {whatsapp}, title: 'Contactate' , text: "En poco tiempo estas disfrutando de tu cancha"},
+  { id: 2, icon: {truck}, title: 'Coordinamos' , text: "Aca va un pequeño texto"},
+  { id: 3, icon: {firma}, title: 'Acuerdo Firmado' , text: "Aca va un pequeño texto"},
+  { id: 4, icon: {pelota}, title: 'Armado de cancha' , text: "Aca va un pequeño texto"},
+  { id: 5, icon: {logo}, title: 'Listo para jugar!', text: "Aca va un pequeño texto"},
+  { id: 6, icon: {logo}, title: 'Compartí la experiencia', text: "Aca va un pequeño texto"}
 ];
 ---
 
@@ -16,7 +22,7 @@ const items = [
     {items.map((item, index) => (
       <div class="flex flex-col items-center">
         <div class="p-6 rounded-[50%] bg-secondary mb-2">
-           <img src={item.icon} alt="Little Giants Courts" class="w-16 h-16 " /> 
+           <img src={item.icon.whatsapp?.src} alt="Little Giants Courts" class="w-16 h-16 "/> 
         </div>
         
         <p class="text-lg font-bold text-primary">{item.title}</p>
