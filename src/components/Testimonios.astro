@@ -27,6 +27,7 @@ const {
   .embla__container {
     display: flex;
     gap: 2rem;
+    margin: 10px;
   }
 
   .embla__slide {
@@ -88,33 +89,10 @@ const {
       </div>
     </div>
   </div>
+  <script type="module">
+    import { initTestimoniosCarousel } from '../../public/scripts/testimonios-carousel';
+    initTestimoniosCarousel();
+  </script>
 </section>
 
-<script type="module">
-  import EmblaCarousel from 'embla-carousel';
 
-  const viewport = document.querySelector('#embla-viewport');
-  const prevBtn = document.querySelector('#prevBtn');
-  const nextBtn = document.querySelector('#nextBtn');
-
-  if (viewport) {
-    const embla = EmblaCarousel(viewport, {
-      loop: true,
-      align: 'start',
-    });
-
-    prevBtn.addEventListener('click', () => embla.scrollPrev());
-    nextBtn.addEventListener('click', () => embla.scrollNext());
-
-    // Auto-play: cada 4 segundos
-    let autoPlayInterval = setInterval(() => {
-      if (embla) embla.scrollNext();
-    }, 4000);
-
-    // Pausar autoplay si el usuario interactúa
-    viewport.addEventListener('pointerenter', () => clearInterval(autoPlayInterval));
-    viewport.addEventListener('pointerleave', () => {
-      autoPlayInterval = setInterval(() => embla.scrollNext(), 4000);
-    });
-  }
-</script>

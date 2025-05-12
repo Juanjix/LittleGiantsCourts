@@ -1,18 +1,50 @@
 ---
-import whatsapp from '../assets/logo-blanco-lgc.png'
-import truck from '../assets/logo-blanco-lgc.png'
-import firma from '../assets/logo-blanco-lgc.png'
-import pelota from '../assets/logo-blanco-lgc.png'
-import logo from '../assets/logo-blanco-lgc.png'
+import whatsapp from '../assets/lgc-icon.svg'
+import truck from '../assets/lgc-icon-2.svg'
+import firma from '../assets/lgc-icon-3.svg'
+import pelota from '../assets/lgc-icon-4.svg'
+import acuerdo from '../assets/lgc-icon-5.svg'
+import otro from '../assets/lgc-icon-5.svg'
 
 const items = [
-  { id: 1, icon: {whatsapp}, title: 'Contactate' , text: "En poco tiempo estas disfrutando de tu cancha"},
-  { id: 2, icon: {truck}, title: 'Coordinamos' , text: "Aca va un pequeño texto"},
-  { id: 3, icon: {firma}, title: 'Acuerdo Firmado' , text: "Aca va un pequeño texto"},
-  { id: 4, icon: {pelota}, title: 'Armado de cancha' , text: "Aca va un pequeño texto"},
-  { id: 5, icon: {logo}, title: 'Listo para jugar!', text: "Aca va un pequeño texto"},
-  { id: 6, icon: {logo}, title: 'Compartí la experiencia', text: "Aca va un pequeño texto"}
+  {
+    id: 1,
+    icon: acuerdo,
+    title: 'Contactate',
+    text: "Escribinos por WhatsApp para recibir toda la info sobre nuestra cancha portátil.",
+  },
+  {
+    id: 2,
+    icon: truck,
+    title: 'Coordinamos',
+    text: "Definimos la logística, el lugar de entrega y el día de instalación según tu disponibilidad.",
+  },
+  {
+    id: 3,
+    icon: whatsapp,
+    title: 'Acuerdo Firmado',
+    text: "Te enviamos un contrato simple y claro para dejar todo listo y en marcha.",
+  },
+  {
+    id: 4,
+    icon: whatsapp,
+    title: 'Armado de cancha',
+    text: "Nuestro equipo instala la cancha en pocas horas, sin necesidad de obra.",
+  },
+  {
+    id: 5,
+    icon: firma,
+    title: 'Listo para jugar!',
+    text: "La cancha está lista. Los chicos ya pueden empezar a jugar y divertirse.",
+  },
+  {
+    id: 6,
+    icon: pelota,
+    title: 'Compartí la experiencia',
+    text: "Mostranos cómo la están disfrutando. ¡Etiquetanos en redes y sumate a la comunidad!",
+  },
 ];
+
 ---
 
 <section class="py-16 px-4 text-center bg-white" >
@@ -22,7 +54,7 @@ const items = [
     {items.map((item, index) => (
       <div class="flex flex-col items-center">
         <div class="p-6 rounded-[50%] bg-secondary mb-2">
-           <img src={item.icon.whatsapp?.src} alt="Little Giants Courts" class="w-16 h-16 "/> 
+           <img src={item.icon.src} alt="Little Giants Courts" class="w-16 h-16 "/> 
         </div>
         
         <p class="text-lg font-bold text-primary">{item.title}</p>
