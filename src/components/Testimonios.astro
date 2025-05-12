@@ -26,8 +26,7 @@ const {
 
   .embla__container {
     display: flex;
-    gap: 2rem;
-    margin: 10px;
+    /* gap: 2rem; */
   }
 
   .embla__slide {
@@ -75,7 +74,7 @@ const {
       <div class="embla__viewport" id="embla-viewport">
         <div class="embla__container">
           {testimonios.map((t: { texto: unknown; nombre: unknown; }) => (
-            <div class="embla__slide bg-secondary text-white py-16 px-16 rounded-lg shadow-md">
+            <div class="embla__slide bg-secondary text-white py-16 px-16 rounded-lg shadow-md mx-5">
               <p class="text-2xl italic mb-4">"{t.texto}"</p>
               <h3 class="font-bold">{t.nombre}</h3>
             </div>
