@@ -1,15 +1,10 @@
-import EmblaCarousel from "embla-carousel";
+// @ts-ignore
+import EmblaCarousel from "https://cdn.skypack.dev/embla-carousel";
 
 export function initTestimoniosCarousel() {
-  const emblaNode = document.querySelector(
-    ".embla__viewport"
-  ) as HTMLElement | null;
-  const prevBtn = document.querySelector(
-    "#prevBtn"
-  ) as HTMLButtonElement | null;
-  const nextBtn = document.querySelector(
-    "#nextBtn"
-  ) as HTMLButtonElement | null;
+  const emblaNode = document.querySelector(".embla__viewport");
+  const prevBtn = document.querySelector("#prevBtn");
+  const nextBtn = document.querySelector("#nextBtn");
 
   if (!emblaNode || !prevBtn || !nextBtn) return;
 
@@ -21,12 +16,12 @@ export function initTestimoniosCarousel() {
   prevBtn.addEventListener("click", () => embla.scrollPrev());
   nextBtn.addEventListener("click", () => embla.scrollNext());
 
-  // Auto-play
   let autoPlayInterval = setInterval(() => embla.scrollNext(), 4000);
 
-  emblaNode.addEventListener("pointerenter", () =>
-    clearInterval(autoPlayInterval)
-  );
+  emblaNode.addEventListener("pointerenter", () => {
+    clearInterval(autoPlayInterval);
+  });
+
   emblaNode.addEventListener("pointerleave", () => {
     autoPlayInterval = setInterval(() => embla.scrollNext(), 4000);
   });
