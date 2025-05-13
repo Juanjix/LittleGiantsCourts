@@ -1,0 +1,52 @@
+---
+// src/components/TestimoniosCarousel.astro
+---
+<!-- Splide CSS desde CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+/>
+
+<div id="testimonios-carousel" class="splide max-w-3xl mx-auto py-12 px-4">
+  <div class="splide__track">
+    <ul class="splide__list">
+      <li class="splide__slide bg-gray-100 rounded-xl p-6 shadow-md">
+        <p class="text-lg font-medium mb-2">“Increíble experiencia, volvería sin dudas.”</p>
+        <p class="text-sm text-gray-600">– Juan Pérez</p>
+      </li>
+      <li class="splide__slide bg-gray-100 rounded-xl p-6 shadow-md">
+        <p class="text-lg font-medium mb-2">“Muy profesionales, excelente atención.”</p>
+        <p class="text-sm text-gray-600">– María González</p>
+      </li>
+      <li class="splide__slide bg-gray-100 rounded-xl p-6 shadow-md">
+        <p class="text-lg font-medium mb-2">“Un lugar único, lo recomiendo totalmente.”</p>
+        <p class="text-sm text-gray-600">– Pedro López</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Splide JS desde CDN (funciona sin build) -->
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
+></script>
+<script>
+  /**
+   * @typedef {import('https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js')} Splide
+   */
+
+  // @ts-ignore
+  document.addEventListener('DOMContentLoaded', function () {
+    // @ts-ignore
+    new Splide('#testimonios-carousel', {
+      type: 'loop',
+      autoplay: true,
+      interval: 4000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: true,
+      speed: 800,
+    }).mount();
+  });
+</script>
