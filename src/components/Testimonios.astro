@@ -1,93 +1,156 @@
 ---
+// src/components/TestimoniosCarousel.astro
 const {
   titulo = "Testimonios",
   subtitulo = "Esto es lo que dicen quienes ya forman parte de Little Giants",
-
   testimonios = [
     { nombre: "Juan Pérez", texto: "Increíble servicio y atención personalizada." },
-    { nombre: "María García", texto: "Me ayudaron a llevar mi música al siguiente nivel." },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" },
-    { nombre: "Lucas Fernández", texto: "¡Gran experiencia y resultados profesionales!" }
+    { nombre: "Lucas Fernández", texto: "En menos de una semana teníamos la cancha armada en el patio y ahora mis hijos se la pasan jugando al aire libre. ¡Nos salvó los fines de semana!" },
+    { nombre: "Lucas Fernández", texto: "Lo que más me gustó fue lo simple que fue todo. Un par de mensajes por WhatsApp, coordinamos el armado y al toque estaba todo listo. Súper profesional y rápido." },
+    { nombre: "Lucas Fernández", texto: "¡Tener una cancha en casa fue lo mejor que nos pasó este año! Nos juntamos todos los días con mis amigos a jugar. Está buenísima y se nota la calidad." }
   ]
 } = Astro.props;
 ---
 
+<!-- Splide CSS desde CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+/>
+
 <style>
-  .embla__viewport {
-    overflow: hidden;
-  }
-
-  .embla__container {
-    display: flex;
-    /* gap: 2rem; */
-  }
-
-  .embla__slide {
-    flex: 0 0 100%;
-    width: 320px;
+  /* Personalización similar a Embla */
+  .splide__slide {
+    background-color: #1e3a8a; /* bg-secondary */
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 0.5rem;
+    margin: 0 1rem;
     height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
   }
 
+  .splide__slide p {
+    font-size: 1.25rem; /* text-2xl */
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .splide__slide h3 {
+    font-weight: bold;
+  }
+
+  /* Botones personalizados */
+  .splide__arrows {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .splide__arrow {
+    background-color: #002356;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+    margin-right: 23px;
+  }
+
+  .splide__arrow--next {
+    right: -4em !important;
+  }
+
+  .splide__pagination {
+  margin-top: 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+
+.splide__pagination__page {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: #1e3a8a !important; /* secondary */
+  border-radius: 50% !important;
+  opacity: 0.5 !important;
+  transition: opacity 0.3s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.splide__pagination__page.is-active {
+  opacity: 1 !important;
+}
+
+  /* Layout responsive */
   @media (min-width: 768px) {
-    .embla__slide {
+    .splide__slide {
       flex: 0 0 50%;
     }
   }
 
   @media (min-width: 1024px) {
-    .embla__slide {
+    .splide__slide {
       flex: 0 0 33.3333%;
     }
   }
-
-  .embla__button {
-    background-color: #002356;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-    border-radius: 0.25rem;
-  }
-
-  .embla__controls {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;    
-  }
 </style>
 
-<section class="bg-white text-primary py-20 px-4 h-[600px]" id="testimonios">
+<section class="bg-white text-primary py-20 px-4" id="testimonios">
   <div class="max-w-6xl mx-auto text-center">
     <h2 class="text-4xl md:text-5xl font-bold mb-2">{titulo}</h2>
     <p class="text-xl mb-8">{subtitulo}</p>
 
-
-    <div class="embla">
-      <div class="embla__viewport" id="embla-viewport">
-        <div class="embla__container">
+    <div id="testimonios-carousel" class="splide">
+      <div class="splide__track">
+        <ul class="splide__list">
           {testimonios.map((t: { texto: unknown; nombre: unknown; }) => (
-            <div class="embla__slide bg-secondary text-white py-16 px-16 rounded-lg shadow-md mx-5">
-              <p class="text-2xl italic mb-4">"{t.texto}"</p>
-              <h3 class="font-bold">{t.nombre}</h3>
-            </div>
+            <li class="splide__slide">
+              <p>"{t.texto}"</p>
+              <h3>{t.nombre}</h3>
+            </li>
           ))}
-        </div>
-      </div>
-
-      <div class="embla__controls">
-        <button class="embla__button" id="prevBtn">‹</button>
-        <button class="embla__button" id="nextBtn">›</button>
+        </ul>
       </div>
     </div>
   </div>
- 
 </section>
 
+<!-- Splide JS desde CDN -->
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
+></script>
+<script>
+  // @ts-ignore
+  document.addEventListener('DOMContentLoaded', function () {
+    // @ts-ignore
+    new Splide('#testimonios-carousel', {
+      type: 'loop',
+      autoplay: true,
+      interval: 4000,
+      pauseOnHover: true,
+      arrows: false,
+      pagination: true,
+      speed: 800,
+      perPage: 1,
+      breakpoints: {
+        768: {
+          perPage: 1,
+        },
+        1024: {
+          perPage: 2,
+        },
+        1280: {
+          perPage: 3,
+        },
+      },
+    }).mount();
+  });
+</script>
