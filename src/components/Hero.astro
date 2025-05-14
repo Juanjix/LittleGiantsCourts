@@ -1,7 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import logo from "../assets/lgc-background.png"
-const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitulo = "Portátil, segura y creada para divertirse en familia", imagen = '', buttonText = 'WhatsApp', buttonText2 = 'Contacto', whatsapp = '+5492914601375' } = Astro.props;
+
+const {
+  titulo = "La primer mini cancha de paddle pensada para chicos",
+  subtitulo = "Portátil, segura y creada para divertirse en familia",
+  imagen = '',
+  buttonText = 'WhatsApp',
+  buttonText2 = 'Contacto',
+  whatsapp = '+5492914601375'
+} = Astro.props;
 ---
 
 <style>
@@ -19,12 +27,18 @@ const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitul
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .background-img.loaded {
+    opacity: 1;
   }
 
   .overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Oscurece la imagen para que el texto se lea mejor */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
 
@@ -32,10 +46,45 @@ const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitul
     position: relative;
     z-index: 2;
   }
+
+  .skeleton {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      90deg,
+      #1e3a8a 0%,
+      #2c5282 50%,
+      #1e3a8a 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
 </style>
 
 <section>
-  <img src={logo.src} alt="Fondo" class="background-img" />
+  <!-- Skeleton -->
+  <div class="skeleton" id="hero-skeleton"></div>
+
+  <!-- Imagen de fondo con fade-in -->
+  <img
+    src={logo.src}
+    alt="Fondo"
+    class="background-img"
+    loading="eager"
+    onload="this.classList.add('loaded'); document.getElementById('hero-skeleton')?.remove();"
+  />
+
+  <!-- Capa de oscurecimiento -->
   <div class="overlay"></div>
 
   <!-- Contenido -->
@@ -44,15 +93,15 @@ const { titulo = "La primer mini cancha de paddle pensada para chicos", subtitul
       <h1 class="text-4xl md:text-6xl font-bold mb-4">{titulo}</h1>
       <p class="text-lg md:text-xl mb-8">{subtitulo}</p>
       <div class="flex gap-4">
-        <a 
-          href={`https://wa.me/${whatsapp}`} 
-          target="_blank" 
+        <a
+          href={`https://wa.me/${whatsapp}`}
+          target="_blank"
           class="px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-semibold transition"
         >
           {buttonText}
         </a>
-        <a 
-          href="#contacto" 
+        <a
+          href="#contacto"
           class="px-6 py-3 bg-transparent text-white border hover:border-secondary rounded-lg font-semibold transition"
         >
           {buttonText2}
